@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Shaikh Diaper Store</title>
+  <style>
+    :root {
+      --primary-color: #4a6fa5;
+      --secondary-color: #166088;
+      --accent-color: #4fc3f7;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --success-color: #28a745;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
+    
+    h2 {
+      color: var(--secondary-color);
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .order-summary {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    li:last-child {
+      border-bottom: none;
+    }
+    
+    .total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px solid var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark-color);
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.2);
+    }
+    
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      width: 100%;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .order-summary, form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Checkout</h1>
+    
+    <div class="order-summary">
+      <h2>Your Order</h2>
+      <ul id="checkout-list"></ul>
+      <p class="total">Total: <span id="checkout-total">Rs. 0</span></p>
+    </div>
+
+    <form id="order-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="fa5e12d9-165c-472f-a226-dfee07fe383a">
+      <input type="hidden" name="Product Details" id="product-details">
+
+      <h2>Shipping Details</h2>
+      <div class="form-group">
+        <input type="text" name="Full Name" placeholder="Full Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" name="Email" placeholder="Email Address" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" name="Phone" placeholder="Phone Number" required>
+      </div>
+      <div class="form-group">
+        <textarea name="Address" placeholder="Shipping Address" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <select name="Payment Method" required>
+          <option value="" disabled selected>Select Payment Method</option>
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="Easypaisa">Easypaisa</option>
+          <option value="JazzCash">JazzCash</option>
+          <option value="Bank Transfer">Bank Transfer</option>
+        </select>
+      </div>
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    function getCartFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      const cart = params.get('cart');
+      return cart ? JSON.parse(cart) : [];
+    }
+
+    const cart = getCartFromURL();
+    const checkoutList = document.getElementById('checkout-list');
+    const checkoutTotal = document.getElementById('checkout-total');
+    const productDetailsInput = document.getElementById('product-details');
+
+    let total = 0;
+    let productDetails = '';
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${item.name}</span><span>Rs. ${item.price}</span>`;
+      checkoutList.appendChild(li);
+      total += item.price;
+      productDetails += `${item.name} - Rs. ${item.price}\n`;
+    });
+
+    checkoutTotal.textContent = `Rs. ${total}`;
+    productDetailsInput.value = productDetails;
+  </script>
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shaikh Diaper Store - Premium Baby Care</title>
+  <style>
+    /* Modern Color Scheme */
+    :root {
+      --primary: #0066cc;
+      --primary-dark: #0052a3;
+      --secondary: #ffcc00;
+      --light: #ffffff;
+      --light-bg: #f8f9fa;
+      --dark: #333333;
+      --gray: #6c757d;
+      --border-radius: 8px;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    /* Base Styles */
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light-bg);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 1.5rem 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--light);
+      margin: 0 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--secondary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('file:///C:/Users/DELL%20LATITUDE%205410/Desktop/sample%20shaikh%20diaper%20store/Flux_Dev_Design_a_visually_appealing_website_header_for_Shaikh_1.jpg') no-repeat center center/cover;
+      color: var(--light);
+      text-align: center;
+      padding: 5rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Section Headings */
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-align: center;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    /* Products Section */
+    .products {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .product {
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: var(--border-radius);
+      margin-bottom: 1rem;
+      background-color: #f1f1f1;
+      padding: 1rem;
+    }
+
+    .product h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .product p {
+      margin-bottom: 0.5rem;
+      color: var(--gray);
+    }
+
+    .product p:last-of-type {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .product button {
+      margin-top: 1rem;
+      background-color: var(--primary);
+      color: var(--light);
+      border: none;
+      padding: 0.8rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .product button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Cart Section */
+    .cart {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--light);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    #cart-items {
+      margin-bottom: 1.5rem;
+    }
+
+    #cart-items li {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #cart-items li:last-child {
+      border-bottom: none;
+    }
+
+    #cart-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    #checkout-form {
+      margin-top: 2rem;
+    }
+
+    #checkout-form button {
+      background-color: var(--secondary);
+      color: var(--dark);
+      border: none;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    #checkout-form button:hover {
+      background-color: #e6b800;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      nav a {
+        margin: 0 0.8rem;
+        font-size: 1rem;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .product-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav a {
+        margin: 0.3rem 0;
+      }
+      
+      .hero {
+        padding: 3rem 1rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+      
+      .products, .cart {
+        padding: 1rem;
+      }
+      
+      .product-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    .footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-section h2,
+.footer-section h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+}
+
+.footer hr {
+  margin: 30px 0 10px;
+  border-color: #444;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #aaa;
+  font-size: 14px;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Shaikh Diaper Store</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#cart">Cart</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to the Best Diaper Store in Town!</h2>
+    <p>Premium quality diapers for your little ones</p>
+  </section>
+
+  <section id="products" class="products">
+    <h2>Our Products</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Medium" alt="Susu Baby Diapers Medium">
+        <h3>Susu Baby Diapers Medium</h3>
+        <p>For 6-11 kg babies</p>
+        <p>Price: Rs. 1,599</p>
+        <button onclick="addToCart('Susu Baby Diapers Medium', 1599)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Large" alt="Susu Baby Diapers Large">
+        <h3>Susu Baby Diapers Large</h3>
+        <p>For 10-15 kg babies</p>
+        <p>Price: Rs. 1,849</p>
+        <button onclick="addToCart('Susu Baby Diapers Large', 1849)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200?text=Susu+Diapers+Small" alt="Susu Baby Diapers Small">
+        <h3>Susu Baby Diapers Small</h3>
+        <p>For 3-8 kg infants</p>
+        <p>Price: Rs. 1,349</p>
+        <button onclick="addToCart('Susu Baby Diapers Small', 1349)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="cart" class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: Rs. <span id="cart-total">0</span></p>
+    <form id="checkout-form" action="checkout.html" method="GET">
+      <input type="hidden" name="cart" id="cart-data">
+      <button type="submit" onclick="prepareCheckout()">Proceed to Checkout</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section company">
+      <h2>Shaikh diaper store</h2>
+      <p>Premium quality diapers for your little ones</p>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>Email: uzairwaqas70@gmail.com</p>
+      <p>Phone: 03122217850</p>
+      <p>Location: W27G+FJ8, Block 3 Nazimabad, Karachi, 74600, Pakistan</p>
+    </div>
+
+    <div class="footer-section social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><img src="https://img.icons8.com/fluency/48/facebook-new.png" alt="Facebook" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram" /></a>
+        <a href="#"><img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp" /></a>
+        <a href="#"><img src="https://img.icons8.com/color/48/twitter--v1.png" alt="Twitter" /></a>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <p class="footer-bottom">© 2025 shaikh diaper store. All rights reserved.</p>
+</footer>
+
+
+  <!-- Original JavaScript Preserved Exactly -->
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - Rs. ${item.price}`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+      cartTotal.textContent = total;
+    }
+
+    function prepareCheckout() {
+      const cartInput = document.getElementById('cart-data');
+      cartInput.value = JSON.stringify(cart);
+    }
+  </script>
+</body>
+</html>
